@@ -24,3 +24,14 @@ jobs:
             echo "❌ index.html is missing! Game will not load."
             exit 1
           fi
+
+      - name: Lint Code Base
+        uses: super-linter/super-linter@v5
+        env:
+          VALIDATE_ALL_CODEBASE: true # Only check changed files
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # We can specifically turn on what we want to demo:
+          VALIDATE_HTML: true
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_CSS: true
